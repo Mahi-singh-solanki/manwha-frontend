@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiclient=axios.create({
-  baseURL: 'https://mahi-manwha.onrender.com', // Your backend's URL
+  baseURL: 'https://manwha-production.up.railway.app', // Your backend's URL
   headers: {
     'Content-Type': 'application/json',
   },
