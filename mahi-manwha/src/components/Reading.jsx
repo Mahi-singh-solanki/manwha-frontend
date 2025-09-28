@@ -36,7 +36,7 @@ export const Reading = () => {
               <img
           // --- THIS IS THE CHANGE ---
           // Point the src to your backend proxy and pass the real URL as a parameter
-          src={`http://localhost:8080/image-proxy?url=${encodeURIComponent(currelem)}`}
+          src={`https://manwha-production.up.railway.app/image-proxy?url=${encodeURIComponent(currelem)}`}
           // --------------------------
           alt={`Page ${index + 1}`}
           className="w-full max-w-3xl rounded-md shadow-lg object-contain"
