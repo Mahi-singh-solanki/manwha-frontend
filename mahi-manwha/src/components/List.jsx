@@ -22,13 +22,28 @@ export const List=()=>{
     const handleChapter=(chapter_id)=>{
         navigate(`/chapter/${chapter_id}`)
     }
-    return <>
-    <div className="bg-gray-800 w-lvw h-lvh ">
-        <ul>
-            {chapters.map((currelem,index)=>{
-                return <li key={index}><h1 onClick={()=>handleChapter(currelem._id)} className="text-white cursor-pointer">chapter:{index}</h1></li>
-            })}
-        </ul>
+    return (
+  <>
+    <div className="bg-gray-800 min-h-screen w-full p-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {chapters.map((currelem, index) => {
+          return (
+            <li
+              key={index}
+              className="border-2 border-gray-500 rounded-md p-4 flex justify-center items-center"
+            >
+              <h1
+                onClick={() => handleChapter(currelem._id)}
+                className="text-white cursor-pointer text-center text-sm sm:text-base md:text-lg lg:text-xl"
+              >
+                Chapter: {currelem.chapter_number}
+              </h1>
+            </li>
+          );
+        })}
+      </ul>
     </div>
-    </>
+  </>
+);
+
 }

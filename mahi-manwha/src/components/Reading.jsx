@@ -22,14 +22,31 @@ export const Reading = () => {
         fetchList()
     },[])
     if(loading) return <p>Loading.....</p>
-    return <>
-    <div className="bg-gray-800 text-white">
-        <h1 className="flex justify-center items-center text-2xl font-bold">Chapter:{chapter.chapter_number}</h1>
-        <ul className="flex flex-col justify-center items-center">
-            {chapter.images.map((currelem,index)=>{
-               return <li key={index}><img src={currelem} alt={index+1} /></li>
-            })}
-        </ul>
+    return (
+  <>
+    <div className="bg-gray-800 text-white min-h-screen p-4">
+      <h1 className="flex justify-center items-center text-xl sm:text-2xl md:text-3xl font-bold mb-6">
+        Chapter: {chapter.chapter_number}
+      </h1>
+
+      <ul className="flex flex-col justify-center items-center gap-6">
+        {chapter.images.map((currelem, index) => {
+          return (
+            <li key={index} className="w-full flex justify-center">
+              <img
+          // --- THIS IS THE CHANGE ---
+          // Point the src to your backend proxy and pass the real URL as a parameter
+          src={`http://localhost:8080/image-proxy?url=${encodeURIComponent(currelem)}`}
+          // --------------------------
+          alt={`Page ${index + 1}`}
+          className="w-full max-w-3xl rounded-md shadow-lg object-contain"
+        />
+            </li>
+          );
+        })}
+      </ul>
     </div>
-    </>
+  </>
+);
+
 }
