@@ -38,8 +38,24 @@ export const Home=()=>{
     const handleImage=(seriesId)=>{
         navigate(`/list/${seriesId}`)
     }
+    const unread=(chapters)=>{
+      let unread_ch=0;
+      for(let i=0;i<chapters.length;i++)
+      {
+        if(chapters[i].read_status==false) unread_ch+=1;
+      }
+      if(unread_ch) return unread_ch;
+      return ""
+    }
+    const handlerefresh=async ()=>{
+      for(let i=0;i<series.length;i++)
+      {
+        await apiclient.get(`/series/${series[i]._id}/refresh`)
+      }
+    }
     return <>
     <div className="p-5 min-h-screen bg-gray-800 flex flex-col gap-4">
+      <button onClick={handlerefresh} className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors w-35 mb-5 text-white">Refresh All</button>
   <ul className="text-white 
                grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 
                gap-4">
@@ -49,12 +65,18 @@ export const Home=()=>{
         className="flex flex-col items-center text-center"
         key={currelem._id}
       >
-        <img
+        <div>
+          <div style={{width:"32px",height:"32px",background:unread(currelem.chapters)?"red":"transparent",borderRadius:unread(currelem.chapters)?"100px":"0px",padding:unread(currelem.chapters)?"8px":"0px"}} className="flex justify-center items-center relative top-9 left-27">
+          <p>{unread(currelem.chapters)}</p>
+        </div>
+          <img
           onClick={() => handleImage(currelem._id)}
           className="cursor-pointer w-36 h-48 object-cover rounded-md shadow"
           src={currelem.cover_url}
           alt={currelem.title}
         />
+        
+        </div>
         <p className="mt-2 text-sm sm:text-base">
           <b>Name: </b>{currelem.title}
         </p>

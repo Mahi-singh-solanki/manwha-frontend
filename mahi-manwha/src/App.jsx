@@ -9,7 +9,7 @@ const App=()=>{
       element:<Home/>
     },
     {
-      path:"/chapter/:chapterId",
+      path:"/:seriesId/chapter/:chapterId",
       element:<Reading/>
     },
     {
