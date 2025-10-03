@@ -48,10 +48,9 @@ export const Home=()=>{
       return ""
     }
     const handlerefresh=async ()=>{
-      for(let i=0;i<series.length;i++)
-      {
-        await apiclient.get(`/series/${series[i]._id}/refresh-all`)
-      }
+    
+        await apiclient.post("/series/refresh-all")
+    
     }
     return <>
     <div className="p-5 min-h-screen bg-gray-800 flex flex-col gap-4">
