@@ -50,7 +50,7 @@ export const Home=()=>{
     const handlerefresh=async ()=>{
       for(let i=0;i<series.length;i++)
       {
-        await apiclient.get(`/series/${series[i]._id}/refresh`)
+        await apiclient.get(`/series/${series[i]._id}/refresh-all`)
       }
     }
     return <>
