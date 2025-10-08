@@ -75,6 +75,25 @@ export const Home=()=>{
                         className="w-full max-w-xl mx-auto block p-3 bg-gray-700 text-white rounded-lg border-2 border-gray-600 focus:outline-none focus:border-purple-500 transition"
                     />
                 </div>
+                <form
+    onSubmit={postSeries}
+    className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-6"
+  >
+    <input
+      type="text"
+      className="text-white bg-transparent border-2 rounded-md p-2 w-full sm:w-1/2"
+      value={url}
+      onChange={(e) => {
+        setUrl(e.target.value);
+      }}
+    />
+    <button
+      className="text-white border-2 border-white px-4 py-2 rounded-md hover:bg-white hover:text-gray-800 transition"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
   <ul className="text-white 
                grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 
                gap-4">
@@ -105,25 +124,7 @@ export const Home=()=>{
 </ul>
 
 
-  <form
-    onSubmit={postSeries}
-    className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-6"
-  >
-    <input
-      type="text"
-      className="text-white bg-transparent border-2 rounded-md p-2 w-full sm:w-1/2"
-      value={url}
-      onChange={(e) => {
-        setUrl(e.target.value);
-      }}
-    />
-    <button
-      className="text-white border-2 border-white px-4 py-2 rounded-md hover:bg-white hover:text-gray-800 transition"
-      type="submit"
-    >
-      Submit
-    </button>
-  </form>
+  
 </div>
 
     </>
