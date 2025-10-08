@@ -5,6 +5,7 @@ import apiclient from "../api/Api";
 export const Home=()=>{
     const[series,setSeries]=useState([]);
     const[url,setUrl]=useState("")
+    const [searchQuery, setSearchQuery] = useState("");
     const postSeries=async (e)=>{
         e.preventDefault(); // Prevent the form from reloading the page
     if (!url) return;
@@ -52,13 +53,32 @@ export const Home=()=>{
         await apiclient.post("/series/refresh-all")
     
     }
+    const filteredSeries = series.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     return <>
     <div className="p-5 min-h-screen bg-gray-800 flex flex-col gap-4">
-      <button onClick={handlerefresh} className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors w-35 mb-5 text-white">Refresh All</button>
+      <button
+                    onClick={handlerefresh}
+                    className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors w-36 mb-5 text-white"
+                >
+                    Refresh All
+                </button>
+
+                {/* 3. ADDED THE RESPONSIVE SEARCH BAR */}
+                <div className="mb-6">
+                    <input
+                        type="text"
+                        placeholder="Search for a manhwa..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full max-w-xl mx-auto block p-3 bg-gray-700 text-white rounded-lg border-2 border-gray-600 focus:outline-none focus:border-purple-500 transition"
+                    />
+                </div>
   <ul className="text-white 
                grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 
                gap-4">
-  {series.map((currelem) => {
+  {filteredSeries.map((currelem) => {
     return (
       <li
         className="flex flex-col items-center text-center"
