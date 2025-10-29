@@ -102,7 +102,7 @@ const[chapters,setChapters]=useState([])
     {chapter.images && chapter.images.map((imageUrl, index) => (
       <img
         key={index}
-        src={`https://manwha-production.up.railway.app/image-proxy?url=${encodeURIComponent(imageUrl)}`}
+        src={`manwha-one.vercel.app/image-proxy?url=${encodeURIComponent(imageUrl)}`}
         alt={`Page ${index + 1}`}
         className="w-full max-w-4xl mb-2" // Added margin-bottom for spacing
       />
