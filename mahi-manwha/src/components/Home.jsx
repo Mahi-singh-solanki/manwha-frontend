@@ -195,7 +195,7 @@ export const Home = () => {
                     <li
                         // w-[calc(25%-1rem)] ensures 4 items fit on small screens
                         // md:w-36 keeps the fixed desktop size (w-36) at MD breakpoint and up
-                        className="flex-shrink-0 w-[calc(25%-1rem)] sm:w-[calc(20%-0.8rem)] md:w-56 h-37 flex flex-col items-center text-center p-2 rounded-lg shadow-lg  transition duration-200 cursor-pointer"
+                        className="flex-shrink-0 w-[calc(45%-1rem)] sm:w-[calc(20%-0.8rem)] md:w-36 h-37 flex flex-col items-center text-center p-2 rounded-lg shadow-lg  transition duration-200 cursor-pointer"
                         key={currelem._id}
                         onClick={() => handleImage(currelem._id)}
                     >
