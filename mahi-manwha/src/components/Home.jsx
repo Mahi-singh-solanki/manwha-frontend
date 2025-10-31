@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient,keepPreviousData } from "@tanstack/react-query";
 import apiclient from "../api/Api";
 import { FaPlus } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -65,6 +65,8 @@ export const Home = () => {
         staleTime:15000,
         refetchOnWindowFocus: false,
         retry: false,
+        gcTime:50000000,
+        placeholderData:keepPreviousData,
     });
 
     // --- EFFECT: Calculate topSeries when 'series' data changes ---
