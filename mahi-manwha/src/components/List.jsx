@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import apiclient from "../api/Api";
+import { ThreeDot } from "react-loading-indicators";
 
 export const List = () => {
     const { seriesId } = useParams();
@@ -48,14 +49,14 @@ export const List = () => {
 
     // 3. HANDLE LOADING AND ERROR STATES to prevent crashes
     if (isLoading) {
-        return <div className="p-5 min-h-screen bg-gray-800 text-white text-center">Loading Chapters...</div>;
+        return <div className=" p-5 min-h-screen bg-black text-white text-center loader w-lvw h-1"><ThreeDot color="white" size="medium" text="" textColor="" /></div>;
     }
     if (isError) {
         return <div className="p-5 min-h-screen bg-gray-800 text-red-400 text-center">Error: {error.message}</div>;
     }
 
     return (
-        <div className="bg-gray-800 min-h-screen w-full p-4">
+        <div className="bg-black min-h-screen w-full p-4">
             <button
                 onClick={() => markAllReadMutation.mutate()}
                 disabled={markAllReadMutation.isPending}
@@ -69,7 +70,7 @@ export const List = () => {
                     <li
                         onClick={() => handleChapter(chapter._id)}
                         key={chapter._id}
-                        className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors"
+                        className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors"
                     >
                         <h2
                             style={{ color: chapter.read_status ? 'gray' : 'white' }}

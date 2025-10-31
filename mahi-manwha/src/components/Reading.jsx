@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import apiclient from "../api/Api"; // NOTE: Make sure this path is correct
 import { useNavigate, useParams } from "react-router-dom";
 
-
+import { ThreeDot } from "react-loading-indicators";
 
 
 
@@ -47,14 +47,14 @@ const[chapters,setChapters]=useState([])
     }
     useEffect(()=>{
         fetchList()
-    },[])
+    },)
     const navigate=useNavigate()
 // 2. Add chapterId to the dependency array
 
   // 3. Handle loading and error states first
   if (loading) {
-    return <div className="bg-gray-800 text-white min-h-screen text-center p-8">Loading Chapter...</div>;
-  }
+        return <div className=" p-5 min-h-screen bg-black text-white text-center loader w-lvw h-1"><ThreeDot color="white" size="medium" text="" textColor="" /></div>;
+    }
   if (error) {
     return <div className="bg-gray-800 text-red-500 min-h-screen text-center p-8">Error: {error}</div>;
   }
@@ -93,7 +93,7 @@ const[chapters,setChapters]=useState([])
 
   // 4. By the time we get here, we know `chapter` and `chapter.images` exist
   return (
-    <div className="bg-gray-800 text-white min-h-screen p-2 md:p-4">
+    <div className="bg-black text-white min-h-screen p-2 md:p-4">
   <h1 className="text-center text-xl sm:text-2xl font-bold p-4">
     Chapter: {chapter.chapter_number}
   </h1>
