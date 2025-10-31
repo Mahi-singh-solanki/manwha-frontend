@@ -190,7 +190,7 @@ export const Home = () => {
                 </button>
             </form>:<></>}
 
-           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto space-x-4 pb-4 -mx-5 px-5 custom-scrollbar">
+           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto space-x-2 pb-4 -mx-5 px-5 custom-scrollbar">
                 {topSeries.map((currelem) => (
                     <li
                         // w-[calc(25%-1rem)] ensures 4 items fit on small screens
@@ -201,7 +201,7 @@ export const Home = () => {
                     >
                         <div >
                             {/* Rendering logic using the 'unread' (render) helper */}
-                            <div style={{width:"16px", height:"16px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center translate-y-5 translate-x-11 z-0 -top-2 -right-2 text-xs font-semibold">
+                            <div style={{width:"16px", height:"16px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center translate-y-5 translate-x-13 z-0 -top-2 -right-2 text-xs font-semibold">
                                 <p>{unread(currelem.chapters)}</p>
                             </div>
                             <img
