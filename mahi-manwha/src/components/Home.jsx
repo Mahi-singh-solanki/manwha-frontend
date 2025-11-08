@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient,keepPreviousData } from "@tanstac
 import apiclient from "../api/Api";
 import { FaPlus } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import { MdDeleteForever } from "react-icons/md";
 import { ThreeDot } from "react-loading-indicators";
 
 // --- LOGIC HELPERS (OUTSIDE COMPONENT) ---
@@ -118,6 +119,9 @@ export const Home = () => {
     const handleImage = (seriesId) => {
         navigate(`/list/${seriesId}`);
     };
+    const handledelete=async(seriesId)=>{
+        await apiclient.delete(`/series/${seriesId}`);
+    }
     
     // --- Helper Functions (for rendering) ---
     // This wrapper ensures we use the correct rendering helper defined above
@@ -192,7 +196,7 @@ export const Home = () => {
                 </button>
             </form>:<></>}
 
-           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto space-x-2 pb-4 -mx-5 px-5 custom-scrollbar">
+           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto space-x-2 pb-4 -mx-5 px-5 custom-scrollbar h-50">
                 {topSeries.map((currelem) => (
                     <li
                         // w-[calc(25%-1rem)] ensures 4 items fit on small screens
@@ -206,6 +210,7 @@ export const Home = () => {
                             <div style={{width:"16px", height:"16px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center translate-y-5 translate-x-13 z-0 -top-2 -right-2 text-xs font-semibold">
                                 <p>{unread(currelem.chapters)}</p>
                             </div>
+                            <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
                             <img
                                 className="w-full h-27 object-cover rounded-md shadow"
                                 src={currelem.cover_url}
@@ -231,7 +236,9 @@ export const Home = () => {
                         <div>
                             <div style={{width:"32px", height:"32px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center relative top-9 left-27">
                                 <p>{unread(currelem.chapters)}</p>
+                                
                             </div>
+                            <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
                             <img
                                 onClick={() => handleImage(currelem._id)}
                                 className="cursor-pointer w-36 h-48 object-cover rounded-md shadow"
