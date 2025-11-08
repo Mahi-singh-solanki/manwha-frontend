@@ -66,8 +66,7 @@ const[chapters,setChapters]=useState([])
     let chapter_number=chapters.find(ch=>ch._id==chapter._id)
     let chapter_numbers=Number(chapter_number.chapter_number)
     let next_chapter=(chapter_numbers+1).toString();
-    const next_chapter_string = String(next_chapter);
-    next_chapter=chapters.find(ch=>String(ch.chapter_number).includes(next_chapter_string))
+    next_chapter=chapters.find(ch=>ch.chapter_number==next_chapter)
     const response = await apiclient.patch(`/chapters/${chapter_number._id}/read`, { read_status:"true" });
     if(next_chapter)
     {
@@ -81,8 +80,7 @@ const[chapters,setChapters]=useState([])
     let chapter_number=chapters.find(ch=>ch._id==chapter._id)
     chapter_number=Number(chapter_number.chapter_number)
     let next_chapter=(chapter_number-1).toString();
-    const next_chapter_string = String(next_chapter);
-    next_chapter=chapters.find(ch=>String(ch.chapter_number).includes(next_chapter_string))
+    next_chapter=chapters.find(ch=>ch.chapter_number==next_chapter)
     
     if(next_chapter)
     {
