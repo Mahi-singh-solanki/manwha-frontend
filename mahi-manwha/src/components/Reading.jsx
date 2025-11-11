@@ -39,7 +39,6 @@ const[chapters,setChapters]=useState([])
         try{
             const response=await apiclient.get(`/series/${seriesId}`);
             const list=await response.data
-            console.log(list.chapters)
             setChapters(list.chapters)
         }catch(error){
             console.error(error);
