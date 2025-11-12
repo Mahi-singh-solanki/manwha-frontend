@@ -196,7 +196,7 @@ export const Home = () => {
                 </button>
             </form>:<></>}
 
-           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto -space-x-8 pb-4 -mx-5 px-5 custom-scrollbar h-40">
+           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto -space-x-6 pb-4 -mx-5 px-5 custom-scrollbar h-40">
                 {topSeries.map((currelem) => (
                     <li
                         // w-[calc(25%-1rem)] ensures 4 items fit on small screens
