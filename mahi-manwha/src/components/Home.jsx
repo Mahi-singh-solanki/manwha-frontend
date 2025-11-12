@@ -196,7 +196,7 @@ export const Home = () => {
                 </button>
             </form>:<></>}
 
-           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto space-x-2 pb-4 -mx-5 px-5 custom-scrollbar h-50">
+           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto -space-x-8 pb-4 -mx-5 px-5 custom-scrollbar h-40">
                 {topSeries.map((currelem) => (
                     <li
                         // w-[calc(25%-1rem)] ensures 4 items fit on small screens
@@ -207,7 +207,7 @@ export const Home = () => {
                     >
                         <div >
                             {/* Rendering logic using the 'unread' (render) helper */}
-                            <div style={{width:"16px", height:"16px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center translate-y-5 translate-x-13 z-0 -top-2 -right-2 text-xs font-semibold">
+                            <div style={{width:"21px", height:"21px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "12px" : "0px"}} className="flex justify-center items-center translate-y-11 translate-x-13 z-0 -top-2 -right-2 text-xs ">
                                 <p>{unread(currelem.chapters)}</p>
                             </div>
                             <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
@@ -234,8 +234,8 @@ export const Home = () => {
                         key={currelem._id}
                     >
                         <div>
-                            <div style={{width:"32px", height:"32px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center relative top-9 left-27">
-                                <p>{unread(currelem.chapters)}</p>
+                            <div style={{width:"32px", height:"32px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center relative top-13 left-27">
+                                <p className="text-sm">{unread(currelem.chapters)}</p>
                                 
                             </div>
                             <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
