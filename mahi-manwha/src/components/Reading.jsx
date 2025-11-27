@@ -73,7 +73,7 @@ const[chapters,setChapters]=useState([])
       navigate(`/${seriesId}/chapter/${next_chapter._id}`)
     }
     else{
-      await apiclient.put(`/series/last/${chapter_number._id}`,{last_read:chapter_number})
+      await apiclient.put(`/series/last/${seriesId}`,{last_read:chapter_number.chapter_number})
       navigate("/")
     }
   }

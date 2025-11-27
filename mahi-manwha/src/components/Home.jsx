@@ -128,6 +128,22 @@ export const Home = () => {
     const unread = (chapters = []) => {
         return unreadForRender(chapters);
     };
+
+    const fetchList=async (seriesId)=>{
+        try{
+            const response=await apiclient.get(`/series/${seriesId}`);
+            const list=await response.data
+            return list.chapters
+        }catch(error){
+            console.error(error);
+        }
+    }
+    const handlelast=async (ch_no,seriesId)=>{
+        const chapters=await fetchList(seriesId)
+        console.log(chapters)
+        const chapter=chapters.find(ch=>ch.chapter_number==ch_no);
+        navigate(`/${seriesId}/chapter/${chapter._id}`)
+    }
     
     // --- Render Logic ---
 
@@ -250,7 +266,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-base">
                             <b>Name: </b>{currelem.title}
                         </p>
-                        <button className="border-2 sm:text-base border-gray-700 rounded-md mt-2 p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
+                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="border-2 sm:text-base border-gray-700 rounded-md mt-2 p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>
