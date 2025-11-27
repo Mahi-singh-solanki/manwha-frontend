@@ -23,12 +23,7 @@ export const List = () => {
             const unreadChapters = series.chapters.filter(ch => !ch.read_status);
             
             // Create an array of promises for all PATCH requests
-            const updatePromises = unreadChapters.map(chapter => 
-                apiclient.patch(`/chapters/${chapter._id}/read`, { read_status: "true" })
-            );
-            
-            // Wait for all of them to complete
-            await Promise.all(updatePromises);
+            await apiclient.post(`/chapters/series/${seriesId}/read`)
         },
         onSuccess: () => {
             // 2. On success, invalidate the query to refetch the fresh data

@@ -221,6 +221,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-base text-[9px] w-full px-1">
                             <b>{currelem.title}</b>
                         </p>
+                        <button className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>
@@ -234,7 +235,7 @@ export const Home = () => {
                         key={currelem._id}
                     >
                         <div>
-                            <div style={{width:"32px", height:"32px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center relative top-13 left-27">
+                            <div style={{width:"32px", height:"32px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "8px" : "0px"}} className="flex justify-center items-center relative top-13 left-24 sm:left-27">
                                 <p className="text-sm">{unread(currelem.chapters)}</p>
                                 
                             </div>
@@ -249,6 +250,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-base">
                             <b>Name: </b>{currelem.title}
                         </p>
+                        <button className="border-2 sm:text-base border-gray-700 rounded-md mt-2 p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>

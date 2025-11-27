@@ -69,9 +69,11 @@ const[chapters,setChapters]=useState([])
     const response = await apiclient.patch(`/chapters/${chapter_number._id}/read`, { read_status:"true" });
     if(next_chapter)
     {
+      await apiclient.put(`/series/last/${seriesId}`,{last_read:next_chapter.chapter_number})
       navigate(`/${seriesId}/chapter/${next_chapter._id}`)
     }
     else{
+      await apiclient.put(`/series/last/${chapter_number._id}`,{last_read:chapter_number})
       navigate("/")
     }
   }
