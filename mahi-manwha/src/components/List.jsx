@@ -15,6 +15,17 @@ export const List = () => {
         // The query function is cleaner without the unnecessary try/catch
         queryFn: () => apiclient.get(`/series/${seriesId}`).then((res) => res.data),
     });
+    const markCompleteMutation=useMutation({
+        mutationFn:async ()=>{
+            await apiclient.put(`/series/complete/${seriesId}`)
+        },
+        onSuccess:()=>{
+            queryClient.invalidateQueries({queryKey:["series",seriesId]});
+        },
+        onError: (err) => {
+            console.error("Failed to mark as Completed:", err);
+        }
+    })
 
     // --- Mutation for Marking Chapters as Read ---
     const markAllReadMutation = useMutation({
@@ -58,6 +69,13 @@ export const List = () => {
                 className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors mb-5 text-white disabled:opacity-50"
             >
                 {markAllReadMutation.isPending ? 'Updating...' : 'Mark All as Read'}
+            </button>
+            <button
+                onClick={() => markCompleteMutation.mutate()}
+                disabled={markCompleteMutation.isPending}
+                className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors mb-5 text-white disabled:opacity-50"
+            >
+                {markCompleteMutation.isPending ? 'Updating...' : 'Mark as complete'}
             </button>
             <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {/* 4. CORRECT DATA MAPPING: Map over series.chapters */}

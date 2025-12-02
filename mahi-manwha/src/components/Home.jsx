@@ -6,6 +6,8 @@ import { FaPlus } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { MdDeleteForever } from "react-icons/md";
 import { ThreeDot } from "react-loading-indicators";
+import { RiBookShelfFill } from "react-icons/ri";
+
 
 // --- LOGIC HELPERS (OUTSIDE COMPONENT) ---
 
@@ -154,7 +156,9 @@ export const Home = () => {
     if (isError) {
         return <div className="p-5 min-h-screen bg-gray-800 text-red-400 text-center">Error: {error.message}</div>;
     }
-
+    const handleSection=()=>{
+        navigate("/section")
+    }
     // Filter ALL series only after data has been successfully loaded
     const filteredSeries = series.filter((item) =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -162,11 +166,7 @@ export const Home = () => {
 
     return (
         <div className={`p-5 min-h-screen bg-black flex flex-col gap-4`}>
-            {/* --- Top Series List --- */}
-            
-            
-
-            {/* --- All Series Controls (Original Code) --- */}
+           
            
             <div className="flex gap-8">
                 <button
@@ -183,6 +183,7 @@ export const Home = () => {
                     <ImCross />
                 </div>
                 }
+                <div className="invert mt-8 scale-180 sm:ml-290 ml-20 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
             </div>
 
             <div className="mb-6">
