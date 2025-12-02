@@ -17,7 +17,7 @@ export const Section=()=>{
   const updatedAt = new Date(item.updated_at);
   return today.getTime() - updatedAt.getTime() >= thirtyDaysInMs;
 });
-        notupdated=notupdated.filter(item=>item.status!="Finsihed")
+        notupdated=notupdated.filter(item=>item.status!="finished")
     setnotUpdated(notupdated)
         return series.data
     }
