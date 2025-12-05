@@ -196,10 +196,10 @@ export const Home = () => {
                 />
             </div>
 
-            {add?<form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-6">
+            {add?<form onSubmit={handleSubmit} className="flex flex-row items-center justify-center gap-2 -mt-6 mb-5 sm:mt-6">
                 <input
                     type="text"
-                    className="text-white bg-transparent border-2 rounded-md p-2 w-full sm:w-1/2"
+                    className="text-white bg-transparent border-2 rounded-md p-2 w-50 sm:w-1/2"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="Enter series URL"
