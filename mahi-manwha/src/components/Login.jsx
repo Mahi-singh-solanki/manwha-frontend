@@ -28,7 +28,7 @@ export const Login=()=>{
 
     return<>
     <div className="bg-black w-lvw h-lvh text-white flex justify-center items-center ">
-        <form className="flex flex-col bg-cyan-800 p-4 rounded-3xl text-center gap-4 w-100">
+        <form className="flex flex-col bg-cyan-800 p-4 rounded-3xl text-center gap-4 w-80 sm:w-100">
         <label htmlFor="loginid">Login Id</label>
         <input type="text" className="outline-0 border-2 rounded-2xl w-35 p-2 self-center" defaultValue={loginid} onChange={(e)=>setLoginid(e.target.value)} id="loginid"/>
         <label htmlFor="pass">Password</label>
