@@ -172,18 +172,18 @@ export const Home = () => {
                 <button
                     onClick={() => refreshAllMutation.mutate()}
                     disabled={refreshAllMutation.isPending}
-                    className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors w-36 mb-5 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="border-2 border-gray-700 rounded-md p-2 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-purple-600 hover:border-purple-500 transition-colors text-[11px] sm:text-[18px] h-10 sm:h-15 w-20 sm:w-38 mb-5 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {refreshAllMutation.isPending ? 'Refreshing...' : 'Refresh All'}
                 </button>
                 {
-                    !add?<div className="invert mt-7 scale-150" onClick={handleplus}>
+                    !add?<div className="invert mt-3.5 sm:mt-7 scale-120 sm:scale-150" onClick={handleplus}>
                     <FaPlus />
-                </div>:<div className="invert mt-7 scale-150 z-1" onClick={handleplus}>
+                </div>:<div className="invert mt-3.5 scale-120 sm:mt-7 sm:scale-150 z-1" onClick={handleplus}>
                     <ImCross />
                 </div>
                 }
-                <div className="invert mt-8 scale-180 sm:ml-290 ml-20 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
+                <div className="invert mt-4.5 scale-150 sm:mt-8 sm:scale-180 sm:ml-290 ml-30 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
             </div>
 
             <div className="mb-6">
@@ -192,7 +192,7 @@ export const Home = () => {
                     placeholder="Search for a manhwa..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full max-w-xl mx-auto block p-3 bg-gray-900 text-white rounded-lg border-2 border-gray-600 focus:outline-none focus:border-white transition"
+                    className="w-full h-11 sm:h-13 max-w-xl mx-auto block p-3 -mt-4 sm:-mt-0 bg-gray-900 text-white rounded-lg border-2 border-gray-600 focus:outline-none focus:border-white transition"
                 />
             </div>
 
@@ -213,39 +213,37 @@ export const Home = () => {
                 </button>
             </form>:<></>}
 
-           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto -space-x-6 pb-4 -mx-5 px-5 custom-scrollbar h-40">
+           <ul className="text-white flex flex-row flex-nowrap overflow-x-auto sm:-space-x-6 -space-x-14 pb-4  -mt-17 sm:-mt-0 px-5 custom-scrollbar h-55">
                 {topSeries.map((currelem) => (
                     <li
-                        // w-[calc(25%-1rem)] ensures 4 items fit on small screens
-                        // md:w-36 keeps the fixed desktop size (w-36) at MD breakpoint and up
                         className="flex-shrink-0 w-[calc(45%-1rem)] sm:w-[calc(20%-0.8rem)] md:w-36 h-37 flex flex-col items-center text-center p-2 rounded-lg shadow-lg  transition duration-200 cursor-pointer"
                         key={currelem._id}
                         onClick={() => handleImage(currelem._id)}
                     >
                         <div >
                             {/* Rendering logic using the 'unread' (render) helper */}
-                            <div style={{width:"21px", height:"21px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "12px" : "0px"}} className="flex justify-center items-center translate-y-11 translate-x-13 z-0 -top-2 -right-2 text-xs ">
+                            <div style={{width:"21px", height:"21px", background: unread(currelem.chapters) ? "red" : "transparent", borderRadius: unread(currelem.chapters) ? "100px" : "0px", padding: unread(currelem.chapters) ? "12px" : "0px"}} className="flex justify-center items-center translate-y-10.5 translate-x-11.5 z-0 -top-2 -right-2 text-[9px] ">
                                 <p>{unread(currelem.chapters)}</p>
                             </div>
                             <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
                             <img
-                                className="w-full h-27 object-cover rounded-md shadow"
+                                className="sm:w-full w-18 h-27 object-cover rounded-md shadow"
                                 src={currelem.cover_url}
                                 alt={currelem.title}
                             />
                             
                         </div>
-                        <p className="mt-2 text-sm sm:text-base text-[9px] w-full px-1">
+                        <p className="mt-2 text-sm sm:text-[12px] text-[7px] text-nowrap overflow-x-clip text-center w-17 sm:w-25 px-1">
                             <b>{currelem.title}</b>
                         </p>
-                        <button className="border-2 border-gray-700 rounded-md p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
+                        <button className="border-2 border-gray-700 rounded-md p-3 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors text-[9px] h-0.5 mt-1 sm:text-sm w-16 sm:h-2 sm:w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>
- <h2 className="text-white text-xl border-b-2 border-gray-700 pb-2 mt-8"></h2>
+ <h2 className="text-white text-xl border-b-2 border-gray-700 pb-2 -mt-5 sm:mt-8"></h2>
 
             {/* --- All Series List (Original Code) --- */}
-            <ul className="text-white grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mt-6">
+            <ul className="text-white grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 -mt-12 sm:mt-6 -space-y-10 sm:-space-y-0">
                 {filteredSeries.map((currelem) => (
                     <li
                         className="flex flex-col items-center text-center"

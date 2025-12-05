@@ -108,26 +108,26 @@ const[chapters,setChapters]=useState([])
           e.target.src = `https://manwha-one.vercel.app/image-proxy?url=${encodeURIComponent(imageUrl)}`;
         }}
         alt={`Page ${index + 1}`}
-        className="w-full max-w-4xl mb-2" // Added margin-bottom for spacing
+        className="w-full max-w-4xl " // Added margin-bottom for spacing
       />
     ))}
   </div>
       
   {/* --- RESPONSIVE NAVIGATION BUTTONS --- */}
-<div className="sticky bottom-4 z-50 w-full flex justify-center px-4">
+<div className="sticky bottom-4 z-50 w-full flex justify-center px-4 mt-5">
   {/* The `flex` class ensures the buttons are always in a row. */}
-  <div className="flex justify-between items-center gap-4 w-full max-w-md bg-gray-900 bg-opacity-80 backdrop-blur-sm p-2 sm:p-4 rounded-2xl border border-gray-700">
+  <div className="flex justify-between items-center gap-4 w-full max-w-md bg-opacity-80  p-2 sm:p-4 rounded-2xl  ">
     
     <button 
       onClick={handlePrev} 
-      className="bg-gray-500 hover:bg-gray-600 w-full sm:w-40 h-10 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-colors"
+      className="bg-gray-500 shadow-black shadow-2xl hover:bg-gray-600 w-full sm:w-40 h-10 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-colors"
     >
       Prev
     </button>
     
     <button 
       onClick={handleNext} 
-      className="bg-green-500 hover:bg-green-600 w-full sm:w-40 h-10 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-colors"
+      className="bg-green-500 hover:bg-green-600 shadow-black shadow-2xl w-full sm:w-40 h-10 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-colors"
     >
       Next
     </button>

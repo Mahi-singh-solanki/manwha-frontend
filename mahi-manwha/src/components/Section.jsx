@@ -13,10 +13,11 @@ export const Section=()=>{
         setCompleted(completed)
         const today = new Date();
         const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-        const notupdated = series.data.filter(item => {
+        let notupdated = series.data.filter(item => {
   const updatedAt = new Date(item.updated_at);
   return today.getTime() - updatedAt.getTime() >= thirtyDaysInMs;
 });
+        notupdated=notupdated.filter(item=>item.status!="finished")
     setnotUpdated(notupdated)
         return series.data
     }
