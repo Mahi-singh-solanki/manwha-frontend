@@ -216,9 +216,9 @@ export const Home = () => {
            <ul className="text-white flex flex-row flex-nowrap overflow-x-auto sm:-space-x-6 -space-x-11 pb-4  -mt-17 sm:-mt-0 px-5 custom-scrollbar h-55">
                 {topSeries.map((currelem) => (
                     <li
-                        className="flex-shrink-0 w-[calc(45%-1rem)] sm:w-[calc(20%-0.8rem)] md:w-36 h-37 flex flex-col items-center text-center p-2 rounded-lg shadow-lg  transition duration-200 cursor-pointer"
+                        className="flex-shrink-0 w-[calc(45%-1rem)] sm:w-[calc(20%-0.8rem)] md:w-36 h-37 flex flex-col items-center text-center p-2 rounded-lg shadow-lg  transition duration-200 "
                         key={currelem._id}
-                        onClick={() => handleImage(currelem._id)}
+                        
                     >
                         <div >
                             {/* Rendering logic using the 'unread' (render) helper */}
@@ -227,9 +227,10 @@ export const Home = () => {
                             </div>
                             <div onClick={()=>handledelete(currelem._id)} className="self-end translate-y-5"><MdDeleteForever /></div>
                             <img
-                                className="sm:w-full w-18 h-27 object-cover rounded-md shadow"
+                                className="sm:w-full w-18 h-27 object-cover rounded-md shadow cursor-pointer"
                                 src={currelem.cover_url}
                                 alt={currelem.title}
+                                onClick={() => handleImage(currelem._id)}
                             />
                             
                         </div>
