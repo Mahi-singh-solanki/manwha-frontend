@@ -46,3 +46,8 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-top: env(safe-area-inset-top);
 }
+
+body {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
