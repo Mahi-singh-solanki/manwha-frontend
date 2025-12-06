@@ -35,24 +35,38 @@ html {
         }
     }
 
-html, body,#root  {
-  padding: 0;
+/* reset */
+html, body, #root {
+  height: 100%;
   margin: 0;
-height:100%;
-  background: #000; /* Matches your reader */
+  padding: 0;
+  background: #000; /* match app background to blend with OS */
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  /* iOS + Android cutout safe area */
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-top: env(safe-area-inset-top);
-}
-
-body {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
+/* top-level container that holds your RouterProvider */
 .app-root {
-  min-height: 100dvh; /* NOT 100vh */
+  min-height: 100dvh;    /* dynamic viewport height that matches visible area */
+  height: 100dvh;
+  box-sizing: border-box;
   background: #000;
+  display: flex;
+  flex-direction: column;
 }
+
+/* content area should grow to fill available space */
+.app-content {
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* safe-area insets - ensure content doesn't get cut off by notches */
+:root {
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+.app-root { padding-top: var(--safe-top); padding-bottom: var(--safe-bottom); }
