@@ -2,7 +2,7 @@
   "name": "Mahi-Manhwha",
   "short_name": "Manhwha",
   "start_url": "/?utm_source=homescreen",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/",
   "background_color": "#ffffff",
   "theme_color": "#111111",
