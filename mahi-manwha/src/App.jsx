@@ -46,6 +46,7 @@ const App = ({ installPWA }) => {
     }
   ])
   return <>
+  <div>
     <QueryClientProvider client={queryClient}>
       {canInstall && (
   <button
@@ -67,6 +68,7 @@ const App = ({ installPWA }) => {
 )}
       <RouterProvider router={router} />
     </QueryClientProvider>
+    </div>
   </>
 }
 

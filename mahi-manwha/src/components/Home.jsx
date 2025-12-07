@@ -9,16 +9,12 @@ import { ThreeDot } from "react-loading-indicators";
 import { RiBookShelfFill } from "react-icons/ri";
 
 
-// --- LOGIC HELPERS (OUTSIDE COMPONENT) ---
 
-// Helper 1: Returns the UNREAD COUNT as a NUMBER (0 or more).
-// This is used ONLY for logic (filtering/sorting).
 const unreadCount = (chapters = []) => {
     return chapters.filter(ch => !ch.read_status).length;
 };
 
-// Helper 2: Returns the unread count or an EMPTY STRING.
-// This is used ONLY for rendering the badge in JSX.
+
 const unreadForRender = (chapters = []) => {
     const count = unreadCount(chapters);
     return count > 0 ? count : "";
@@ -27,10 +23,9 @@ const unreadForRender = (chapters = []) => {
 const getTopSeriesList = (allSeries) => {
     if (!allSeries || allSeries.length === 0) return [];
 
-    // 1. Separate series with unread chapters (using the NUMERICAL helper)
+   
     const seriesWithUnread = allSeries
         .filter(item => unreadCount(item.chapters) > 0)
-        // Sort by unread count (highest first) using NUMERICAL subtraction
         .sort((a, b) => unreadCount(b.chapters) - unreadCount(a.chapters)); 
 
     // 2. Separate remaining series (no unread chapters)
@@ -48,20 +43,14 @@ const getTopSeriesList = (allSeries) => {
     return topList;
 };
 
-// --- HOME COMPONENT START ---
 
 export const Home = () => {
-    // State for controlled inputs remains in useState
     const [url, setUrl] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
     const [add,setAdd]=useState(false);
-    // Renamed 'addtop' to 'setTopSeries' for clarity
     const [topSeries,setTopSeries]=useState([]); 
-    // Access the global query client provided in App.jsx
     const queryClient = useQueryClient();
-
-    // --- Data Fetching ---
     const { data: series, isLoading, isError, error } = useQuery({
         queryKey: ["series"],
         queryFn: () => apiclient.get("/series").then(res => res.data),
@@ -72,20 +61,12 @@ export const Home = () => {
         placeholderData:keepPreviousData,
     });
 
-    // --- EFFECT: Calculate topSeries when 'series' data changes ---
     useEffect(() => {
-        // Run ONLY when 'series' data from react-query is available
         if (series) {
             const calculatedTopSeries = getTopSeriesList(series);
-            // Set the final calculated array ONCE
             setTopSeries(calculatedTopSeries); 
         }
     }, [series]); 
-    // The console.log(topSeries) inside the useEffect was removed as it shows the stale state.
-
-    // --- Mutations (for CUD operations) ---
-
-    // Mutation for adding a new series
     const addSeriesMutation = useMutation({
         mutationFn: (newSeriesUrl) => apiclient.post("/series", { source_url: newSeriesUrl }),
         onSuccess: () => {
@@ -96,7 +77,6 @@ export const Home = () => {
         }
     });
 
-    // Mutation for refreshing all series
     const refreshAllMutation = useMutation({
         mutationFn: () => apiclient.post("/series/refresh-all"),
         onSuccess: () => {
@@ -183,7 +163,7 @@ export const Home = () => {
                     <ImCross />
                 </div>
                 }
-                <div className="invert mt-4.5 scale-150 sm:mt-8 sm:scale-180 sm:ml-290 ml-30 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
+                <div className="invert mt-4.5 scale-150 sm:mt-8 sm:scale-180 sm:ml-290 ml-28 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
             </div>
 
             <div className="mb-6">
@@ -237,7 +217,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-[12px] text-[7px] text-nowrap overflow-x-clip text-center w-17 sm:w-25 px-1">
                             <b>{currelem.title}</b>
                         </p>
-                        <button className="border-2 border-gray-700 rounded-md p-3 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors text-[9px] h-0.5 mt-1 sm:text-sm w-16 sm:h-2 sm:w-22 text-sm">chapter:{currelem.last_read}</button>
+                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="border-2 border-gray-700 rounded-md p-3 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors text-[9px] h-0.5 mt-1 sm:text-sm w-16 sm:h-2 sm:w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>
