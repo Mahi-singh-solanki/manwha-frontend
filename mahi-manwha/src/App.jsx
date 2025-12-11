@@ -6,6 +6,7 @@ import { Section } from "./components/Section";
 import { Login } from "./components/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { SearchResult } from "./components/Searchresult";
 
 const App = ({ installPWA }) => {
   const [canInstall, setCanInstall] = useState(false);
@@ -43,6 +44,10 @@ const App = ({ installPWA }) => {
     {
       path: "/section",
       element: <Section />
+    },
+    {
+      path:"/search",
+      element:<SearchResult/>
     }
   ])
   return <>

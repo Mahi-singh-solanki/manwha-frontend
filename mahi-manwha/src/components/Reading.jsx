@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import apiclient from "../api/Api"; // NOTE: Make sure this path is correct
 import { useNavigate, useParams } from "react-router-dom";
-
+import { FaHome } from "react-icons/fa";
 import { ThreeDot } from "react-loading-indicators";
 
 
@@ -91,13 +91,18 @@ const[chapters,setChapters]=useState([])
       return;
     }
   }
+  const handlehome=()=>{
+    navigate("/home")
+  }
 
   // 4. By the time we get here, we know `chapter` and `chapter.images` exist
   return (
     <div className="bg-black text-white min-h-screen p-2 md:p-4">
-  <h1 className="text-center text-xl sm:text-2xl font-bold p-4">
+      
+  <div className="flex justify-center items-center"><h1 className="text-center text-xl sm:text-2xl font-bold p-4">
     Chapter: {chapter.chapter_number}
-  </h1>
+    <div className="scale-130 -mt-6 sm:-mt-7.5 sm:ml-300 ml-65 sm:scale-180   hover:cursor-pointer"  onClick={handlehome}><FaHome /></div>
+  </h1></div>
 
   <div className="flex flex-col items-center">
     {chapter.images && chapter.images.map((imageUrl, index) => (

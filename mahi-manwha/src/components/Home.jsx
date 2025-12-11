@@ -7,6 +7,8 @@ import { ImCross } from "react-icons/im";
 import { MdDeleteForever } from "react-icons/md";
 import { ThreeDot } from "react-loading-indicators";
 import { RiBookShelfFill } from "react-icons/ri";
+import { CiSearch } from "react-icons/ci";
+
 
 
 
@@ -45,10 +47,9 @@ const getTopSeriesList = (allSeries) => {
 
 
 export const Home = () => {
-    const [url, setUrl] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
-    const [add,setAdd]=useState(false);
+    const [searchbtn,handlesearchbtn]=useState(false);
     const [topSeries,setTopSeries]=useState([]); 
     const queryClient = useQueryClient();
     const { data: series, isLoading, isError, error } = useQuery({
@@ -67,15 +68,6 @@ export const Home = () => {
             setTopSeries(calculatedTopSeries); 
         }
     }, [series]); 
-    const addSeriesMutation = useMutation({
-        mutationFn: (newSeriesUrl) => apiclient.post("/series", { source_url: newSeriesUrl }),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["series"] });
-        },
-        onError: (err) => {
-            console.error("Error adding series:", err);
-        }
-    });
 
     const refreshAllMutation = useMutation({
         mutationFn: () => apiclient.post("/series/refresh-all"),
@@ -89,14 +81,9 @@ export const Home = () => {
 
     // --- Event Handlers ---
     const handleplus=()=>{
-        setAdd(!add);
+        navigate('/search');
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!url) return;
-        addSeriesMutation.mutate(url);
-        setUrl(""); // Reset input field
-    };
+   
 
     const handleImage = (seriesId) => {
         navigate(`/list/${seriesId}`);
@@ -156,17 +143,17 @@ export const Home = () => {
                 >
                     {refreshAllMutation.isPending ? 'Refreshing...' : 'Refresh All'}
                 </button>
-                {
-                    !add?<div className="invert mt-3.5 sm:mt-7 scale-120 sm:scale-150" onClick={handleplus}>
+                
+                    <div className="invert mt-3.5 sm:mt-7 scale-120 sm:scale-150" onClick={handleplus}>
                     <FaPlus />
-                </div>:<div className="invert mt-3.5 scale-120 sm:mt-7 sm:scale-150 z-1" onClick={handleplus}>
-                    <ImCross />
                 </div>
-                }
-                <div className="invert mt-4.5 scale-150 sm:mt-8 sm:scale-180 sm:ml-290 ml-28 hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
+                
+                <div onClick={()=>handlesearchbtn(!searchbtn)} className="sm:ml-290 cursor-pointer invert scale-150 mt-4.5 sm:mt-8.5 sm:scale-200 ml-12"><CiSearch /></div>
+                <div className="invert mt-4.5 scale-150 sm:mt-8 sm:scale-180  hover:cursor-pointer"  onClick={handleSection}><RiBookShelfFill /></div>
+                
             </div>
 
-            <div className="mb-6">
+            {searchbtn?<div className="mb-6">
                 <input
                     type="text"
                     placeholder="Search for a manhwa..."
@@ -174,24 +161,7 @@ export const Home = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full h-11 sm:h-13 max-w-xl mx-auto block p-3 -mt-4 sm:-mt-0 bg-gray-900 text-white rounded-lg border-2 border-gray-600 focus:outline-none focus:border-white transition"
                 />
-            </div>
-
-            {add?<form onSubmit={handleSubmit} className="flex flex-row items-center justify-center gap-2 -mt-6 mb-5 sm:mt-6">
-                <input
-                    type="text"
-                    className="text-white bg-transparent border-2 rounded-md p-2 w-50 sm:w-1/2"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder="Enter series URL"
-                />
-                <button
-                    className="text-white border-2 border-white px-4 py-2 rounded-md hover:bg-white hover:text-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    type="submit"
-                    disabled={addSeriesMutation.isPending}
-                >
-                    {addSeriesMutation.isPending ? 'Submitting...' : 'Submit'}
-                </button>
-            </form>:<></>}
+            </div>:<></>}
 
            <ul className="text-white flex flex-row flex-nowrap overflow-x-auto sm:-space-x-6 -space-x-11 pb-4  -mt-17 sm:-mt-0 px-5 custom-scrollbar h-55">
                 {topSeries.map((currelem) => (
