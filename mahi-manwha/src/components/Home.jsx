@@ -187,7 +187,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-[12px] text-[7px] text-nowrap overflow-x-clip text-center w-17 sm:w-25 px-1">
                             <b>{currelem.title}</b>
                         </p>
-                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="border-2 border-gray-700 rounded-md p-3 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors text-[9px] h-0.5 mt-1 sm:text-sm w-16 sm:h-2 sm:w-22 text-sm">chapter:{currelem.last_read}</button>
+                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="text-wrap overflow-clip border-2 border-gray-700 rounded-md p-3 sm:p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors text-[9px] h-0.5 mt-1 sm:text-sm w-16 sm:h-2 sm:w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>
@@ -216,7 +216,7 @@ export const Home = () => {
                         <p className="mt-2 text-sm sm:text-base">
                             <b>Name: </b>{currelem.title}
                         </p>
-                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="border-2 sm:text-base border-gray-700 rounded-md mt-2 p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
+                        <button onClick={()=>handlelast(currelem.last_read,currelem._id)} className="text-wrap overflow-clip border-2 sm:text-base border-gray-700 rounded-md mt-2 p-4 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-600 hover:border-gray-500 transition-colors h-2 w-22 text-sm">chapter:{currelem.last_read}</button>
                     </li>
                 ))}
             </ul>

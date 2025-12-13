@@ -2,7 +2,8 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import apiclient from "../api/Api"
 import { ThreeDot } from "react-loading-indicators";
 import { useNavigate } from "react-router-dom";
-import {  useState } from "react";
+import { FaHome } from "react-icons/fa";
+import {  useEffect, useState } from "react";
 export const Section=()=>{
     const[completedseries,setCompleted]=useState([])
     const[notUpdated,setnotUpdated]=useState([])
@@ -10,7 +11,6 @@ export const Section=()=>{
     const getseries=async()=>{
         const series=await apiclient.get("/series")
         const completed=series.data.filter(series=>series.status=="finished")
-        setCompleted(completed)
         const today = new Date();
         const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
         let notupdated = series.data.filter(item => {
@@ -18,18 +18,28 @@ export const Section=()=>{
   return today.getTime() - updatedAt.getTime() >= thirtyDaysInMs;
 });
         notupdated=notupdated.filter(item=>item.status!="finished")
-    setnotUpdated(notupdated)
+    localStorage.setItem("completedseries",JSON.stringify(completed))
+    localStorage.setItem("notupdatedseries",JSON.stringify(notupdated))
         return series.data
     }
+    useEffect(()=>{
+        const completed=JSON.parse(localStorage.getItem("completedseries"))
+        const notupdated=JSON.parse(localStorage.getItem("notupdatedseries"))
+        setCompleted(completed)
+        setnotUpdated(notupdated)
+    },[])
     const handleImage = (seriesId) => {
         navigate(`/list/${seriesId}`);
     };
-    let {data,isLoading,isError,error}=useQuery({
+    let {isLoading,isError,error}=useQuery({
         queryKey:["series"],
         queryFn:getseries,
         gcTime:5000,
         placeholderData:keepPreviousData
     })
+    const handlehome=()=>{
+        navigate("/home")
+    }
 
     if (isLoading) {
         return <div className=" p-5 min-h-screen bg-black text-white text-center loader w-lvw h-1"><ThreeDot color="white" size="medium" text="" textColor="" /></div>;
@@ -39,7 +49,8 @@ export const Section=()=>{
     }
     return<>
     <div className="bg-black w-lvw min-h-screen text-white flex flex-col">
-        <div className="m-10"><h1 className="font-bold text-2xl">Completed Series</h1>
+        <div className="m-10"><div className="flex"><h1 className="font-bold text-2xl">Completed Series</h1>
+        <div className=" mt-2 scale-150 sm:scale-180 ml-5 sm:ml-310  hover:cursor-pointer"  onClick={handlehome}><FaHome /></div></div>
         <ul className="text-white grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mt-6">
                         {completedseries.map((currelem) => (
                             <li
