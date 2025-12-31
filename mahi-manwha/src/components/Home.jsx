@@ -33,11 +33,11 @@ const getTopSeriesList = (allSeries) => {
     // 2. Separate remaining series (no unread chapters)
     const seriesWithoutUnread = allSeries.filter(item => unreadCount(item.chapters) === 0);
 
-    let topList = seriesWithUnread.slice(0, 10);
+    let topList = seriesWithUnread.slice(0, 15);
     
     // 3. If the list is less than 10, fill it with the remaining series
-    if (topList.length < 10) {
-        const needed = 10 - topList.length;
+    if (topList.length < 15) {
+        const needed = 15 - topList.length;
         topList = topList.concat(seriesWithoutUnread.slice(0, needed));
     }
     
@@ -89,7 +89,10 @@ export const Home = () => {
         navigate(`/list/${seriesId}`);
     };
     const handledelete=async(seriesId)=>{
-        await apiclient.delete(`/series/${seriesId}`);
+        if(confirm("Do you wanna delete?"))
+        {
+            await apiclient.delete(`/series/${seriesId}`);
+        }
     }
     
     // --- Helper Functions (for rendering) ---

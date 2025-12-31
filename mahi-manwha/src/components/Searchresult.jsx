@@ -74,7 +74,10 @@ export const SearchResult=()=>{
         navigate("/section")
     }
     const handleadding=(url)=>{
-         addMutation.mutate(url);
+         if(confirm("Do you wanna add this series?"))
+         {
+            addMutation.mutate(url);
+         }
     }
     const filteredSeries = series.filter((item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
