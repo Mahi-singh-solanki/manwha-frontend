@@ -61,12 +61,31 @@ export const Home = () => {
         gcTime:50000000,
         placeholderData:keepPreviousData,
     });
+    const get_user=async()=>{
+        try{
+            const token=localStorage.getItem("Token")
+            const data=await apiclient.get("/auth/auth/me", {
+  headers: {
+    'Authorization': `${token}`
+  }
+})          
+    console.log(data)
+        }catch(error){
+            if(error)
+            {
+                localStorage.removeItem("Token")
+                navigate("/")
+            }
+        }
+    }
 
     useEffect(() => {
+        get_user()
         if (series) {
             const calculatedTopSeries = getTopSeriesList(series);
             setTopSeries(calculatedTopSeries); 
         }
+
     }, [series]); 
 
     const refreshAllMutation = useMutation({
