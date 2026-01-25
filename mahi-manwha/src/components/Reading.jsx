@@ -74,7 +74,7 @@ const[chapters,setChapters]=useState([])
     }
     else{
       await apiclient.put(`/series/last/${seriesId}`,{last_read:chapter_number.chapter_number})
-      navigate("/")
+      navigate("/home")
     }
   }
   const handlePrev=()=>{
