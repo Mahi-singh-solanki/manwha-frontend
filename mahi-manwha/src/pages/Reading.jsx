@@ -2,7 +2,7 @@ import { X, Home, ChevronLeft, ChevronRight, List } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate,useParams } from "react-router";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 import { ThreeDot } from "react-loading-indicators";
 
 export const Reading=()=> {

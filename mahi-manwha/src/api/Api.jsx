@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiclient=axios.create({
-  baseURL: 'https://manwha-production.up.railway.app',
+  baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },

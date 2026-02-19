@@ -1,7 +1,7 @@
 import { ArrowLeft, BookOpen, Heart, TrendingUp, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 import { useEffect, useState } from "react";
 import { useQuery,keepPreviousData } from "@tanstack/react-query";
 import { ThreeDot } from "react-loading-indicators";

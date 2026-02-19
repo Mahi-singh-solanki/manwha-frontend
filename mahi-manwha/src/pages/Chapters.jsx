@@ -9,7 +9,7 @@ import { ThreeDot } from "react-loading-indicators";
 import { motion } from "framer-motion";
 // import { useState } from "react";
 import { useParams,useNavigate } from "react-router";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 import { useQuery,useMutation,useQueryClient } from "@tanstack/react-query";
 
 export const Chapters = () => {

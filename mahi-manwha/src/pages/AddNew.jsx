@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 
 export const AddNew = () => {
     const navigate = useNavigate();

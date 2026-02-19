@@ -1,7 +1,7 @@
 import { Mail, Lock, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 import { useState,useEffect } from "react";
 
 export const Login=()=> {

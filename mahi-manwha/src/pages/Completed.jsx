@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import { ThreeDot } from "react-loading-indicators";
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 
 export const Completed=()=> {
   const[completedseries,setCompleted]=useState([])

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ThreeDot } from "react-loading-indicators";
 import { useRef } from "react";
-import apiclient from "../Api/Api";
+import apiclient from "../api/Api";
 
 const heroSlides = [
     {
