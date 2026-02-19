@@ -3,35 +3,14 @@
 @tailwind components; 
 @tailwind utilities;
 
-body::-webkit-scrollbar {
-    display: none;
-    overflow-x: hidden;
-}
-html {
-    scrollbar-width: none;
-    
+body{
+  background-color: #1a1416;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-        display: none;
-        width: 0 !important; 
-        height: 0 !important; 
-    }
-
-    /* For Firefox */
-    .custom-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-
-    /* --- RESPONSIVE ADJUSTMENTS (Keeping your existing logic) --- */
-    /* Ensure padding matches for full-bleed look on mobile */
-    @media (max-width: 640px) {
-        .custom-scrollbar {
-            padding-left: 1rem;
-            padding-right: 1rem;
-            margin-left: -3rem;
-            margin-right: -1rem;
-        }
-    }
-
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

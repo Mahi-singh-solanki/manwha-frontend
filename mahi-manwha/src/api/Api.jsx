@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiclient=axios.create({
-  baseURL: 'https://manwha-one.vercel.app', // Your backend's URL
+  baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },
