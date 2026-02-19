@@ -83,11 +83,11 @@ const ManhwaCard = ({ item }) => {
                     <div className="w-full h-2 bg-gray-700 rounded-full">
                         <div
                             className="h-2 bg-white rounded-full"
-                            style={{ width: `${parseInt((item.last_read / item.chapters.length) * 100)}%` }}
+                            style={{ width: `${parseInt(((item.chapters.length-unread(item.chapters)) / item.chapters.length) * 100)}%` }}
                         />
                     </div>
                     <p className="text-xs text-gray-400 mt-1 text-right">
-                        {parseInt((item.last_read / item.chapters.length) * 100)}%
+                        {parseInt(((item.chapters.length-unread(item.chapters)) / item.chapters.length) * 100)}%
                     </p>
                 </div>
             </div>
