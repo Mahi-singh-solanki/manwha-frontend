@@ -252,6 +252,25 @@ export const Home = () => {
         setCurrent((prev) =>
             prev === 0 ? heroSlides.length - 1 : prev - 1
         );
+        const getUser = async () => {
+    try {
+      const token = localStorage.getItem("Token");
+
+      const response = await apiclient.get("/auth/auth/me", {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+    } catch (error) {
+        localStorage.clear("Token")
+        navigate("/login")
+        console.log(error)
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
     useEffect(() => {
         const interval = setInterval(() => {
             nextSlide();
