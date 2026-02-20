@@ -63,6 +63,7 @@ export const AddNew = () => {
          
             <div className="relative mb-10 flex gap-2">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Search for manhwa to add..."
@@ -72,10 +73,11 @@ export const AddNew = () => {
                 />
                 <button
                     type="submit"
-                    onClick={handleSubmit}
+                    
                     disabled={addSeriesMutation.isPending}
                 >
                 </button>
+                </form>
             </div>
 
        
