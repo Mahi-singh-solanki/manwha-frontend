@@ -61,7 +61,7 @@ export const AddNew = () => {
             </div>
 
          
-            <div className="relative mb-10 flex gap-2">
+            <div className="relative mb-10 flex gap">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                 <form onSubmit={handleSubmit}>
                 <input
