@@ -71,7 +71,6 @@ export const AddNew = () => {
                     className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-gray transition"
                 />
                 <button
-                    {/* className="text-white border-2 border-gray-400 px-4 py-2 rounded-2xl hover:bg-gray  transition disabled:opacity-50 disabled:cursor-not-allowed" */}
                     type="submit"
                     onClick={handleSubmit}
                     disabled={addSeriesMutation.isPending}
