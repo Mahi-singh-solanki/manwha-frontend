@@ -189,7 +189,7 @@ const TopTenCard = ({ item, index }) => {
       />
 
       <div
-        className="absolute top-3 left-1 sm:left-3 sm:w-9 sm:h-9 w-5 h-5 rounded-full flex items-center justify-center text-[5px] sm:text-[10px] font-bold text-white  shadow-lg"
+        className="absolute top-3 left-1 sm:left-3 sm:w-9 sm:h-9 w-5 h-5 rounded-full flex items-center justify-center text-[7px] sm:text-[10px] font-bold text-white  shadow-lg"
         style={{ background: unread(item.chapters) ? "blue" : "transparent" }}
       >
         {unread(item.chapters)}
@@ -235,7 +235,7 @@ const TopTenCard = ({ item, index }) => {
         </div>
       </div>
 
-      <div className="absolute bottom-3 left-1 sm:left-3 bg-red-800 text-white text-[5px] sm:text-xs px-1 sm:px-3 py-1 rounded-full">
+      <div className="absolute bottom-3 left-1 sm:left-3 bg-red-800 text-white text-[7px] sm:text-xs px-1 sm:px-3 py-1 rounded-full">
         Ch. {item.chapters?.length}
       </div>
     </motion.div>
