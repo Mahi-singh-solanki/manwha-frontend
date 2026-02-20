@@ -448,7 +448,7 @@ export const Home = () => {
           Recent Read's
         </h2>
 
-        <div className="flex gap-2 sm:gap-6 overflow-x-auto sm:pb-4 scrollbar-hide">
+        <div className="flex gap-3 sm:gap-6 overflow-x-auto sm:pb-4 scrollbar-hide">
           {topSeries?.map((item, index) => (
             <TopTenCard key={item._id} item={item} index={index} />
           ))}
