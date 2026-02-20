@@ -185,7 +185,7 @@ const TopTenCard = ({ item, index }) => {
       <img
         src={item.cover_url}
         alt={item.title}
-        className="w-full h-full object-cover hover:scale-1.5"
+        className="w-full h-full object-cover"
       />
 
       <div
