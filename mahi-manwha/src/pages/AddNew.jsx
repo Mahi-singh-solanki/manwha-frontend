@@ -76,7 +76,6 @@ export const AddNew = () => {
                     onClick={handleSubmit}
                     disabled={addSeriesMutation.isPending}
                 >
-                    /* {addSeriesMutation.isPending ? 'searching...' : 'Submit'} */
                 </button>
             </div>
 
