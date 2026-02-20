@@ -119,9 +119,9 @@ export const Chapters = () => {
           <div className="flex sm:flex-row flex-col gap-4">
             <button
               className="bg-white/5 sm:px-8 py-3 rounded-xl font-semibold hover:scale-105 transition"
-              onClick={() => handleChapter(series.chapters[0]._id)}
+              onClick={() => handleChapter(series.last_read!=0?series.chapters.filter((e)=>e.chapter_number==series.last_read)[0]._id:series.chapters[0]._id)}
             >
-              Start Reading
+              {series.last_read!=0?"Continue":"Start Reading"}
             </button>
 
             <button

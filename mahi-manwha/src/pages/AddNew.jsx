@@ -50,7 +50,7 @@ export const AddNew = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#0B0F19] text-white px-8 py-6">
+        <div className="min-h-screen  text-white px-8 py-6 mb-15">
 
             <div className="flex items-center gap-4 mb-10">
                 <ArrowLeft

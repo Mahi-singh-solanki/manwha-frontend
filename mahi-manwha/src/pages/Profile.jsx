@@ -1,15 +1,24 @@
-import { ArrowLeft, BookOpen, Heart, TrendingUp, LogOut } from "lucide-react";
+import { ArrowLeft, BookOpen, Heart, TrendingUp, LogOut,RefreshCcw  } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import apiclient from "../api/Api";
 import { useEffect, useState } from "react";
-import { useQuery,keepPreviousData } from "@tanstack/react-query";
+import { useQuery,keepPreviousData,useQueryClient,useMutation } from "@tanstack/react-query";
 import { ThreeDot } from "react-loading-indicators";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-
+  const queryClient = useQueryClient();
+  const refreshAllMutation = useMutation({
+        mutationFn: () => apiclient.post("/series/refresh-all"),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["series"] });
+        },
+        onError: (err) => {
+            console.error("Error refreshing series:", err);
+        }
+    });
   const { data: series, isLoading, isError, error } = useQuery({
         queryKey: ["series"],
         queryFn: () => apiclient.get("/series").then(res => res.data),
@@ -56,7 +65,7 @@ export const Profile = () => {
     }
 
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-white px-10 py-6">
+    <div className="min-h-screen  text-white px-10 mb-15 py-6">
 
       <div className="flex items-center gap-4 mb-10">
         <ArrowLeft
@@ -103,7 +112,15 @@ export const Profile = () => {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12 flex flex-col gap-5">
+        <button
+          onClick={() => refreshAllMutation.mutate()}
+          disabled={refreshAllMutation.isPending}
+          className="w-full border border-gray-500 text-gray-200 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-red-500/10 transition text-lg font-medium"
+        >
+          <RefreshCcw  size={18} />
+          {refreshAllMutation.isPending ? 'Refreshing...' : 'Refresh All'}
+        </button>
         <button
           onClick={handleLogout}
           className="w-full border border-red-500 text-red-500 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-red-500/10 transition text-lg font-medium"
