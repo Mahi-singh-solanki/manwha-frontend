@@ -111,7 +111,7 @@ export const Reading = () => {
           onClick={() => navigate(`/chapters/${series._id}`)}
         />
         <div>
-          <h1 className="text-md sm:text-xl font-semibold">{series?.title}</h1>
+          <h1 className="text-md sm:text-xl font-semibold">{series?.title} - {chapter?.chapter_number}</h1>
         </div>
       </div>
 
