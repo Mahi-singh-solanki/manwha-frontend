@@ -72,7 +72,7 @@ export const AddNew = () => {
                     className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-gray transition"
                 />
                 <button
-                    type="submit"
+                  class name="w-0"  type="submit"
                     
                     disabled={addSeriesMutation.isPending}
                 >
