@@ -61,7 +61,7 @@ export const AddNew = () => {
             </div>
 
          
-            <div className="relative mb-10 flex gap">
+            <div className="relative w-full mb-10 flex gap-2">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                 <form onSubmit={handleSubmit}>
                 <input
@@ -69,7 +69,7 @@ export const AddNew = () => {
                     placeholder="Search for manhwa to add..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-100vw bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-gray transition"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-gray transition"
                 />
                 <button
                   class name="w-0"  type="submit"
